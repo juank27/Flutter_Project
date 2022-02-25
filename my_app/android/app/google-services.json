@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "262207267207",
+    "project_id": "linea2-a7798",
+    "storage_bucket": "linea2-a7798.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262207267207:android:f2a860c85e2bcb9e17b322",
+        "android_client_info": {
+          "package_name": "com.linea2.my_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "262207267207-1aclgcbtd2qplq3p8cstove6raads03c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7aP7r97j_v8kW8fDyQXa-2kl4fjPQ_-s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "262207267207-1aclgcbtd2qplq3p8cstove6raads03c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
