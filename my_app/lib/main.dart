@@ -27,7 +27,7 @@ class HomeStart extends State<Home> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Center(
                 child: Container(
                   width: 150,
@@ -37,9 +37,11 @@ class HomeStart extends State<Home> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 0),
+              padding: const EdgeInsets.only(
+                  left: 10, top: 10, right: 10, bottom: 0),
               child: ElevatedButton(
-                style: ElevatedButton.styleFrom(minimumSize: Size(400, 50)),
+                style:
+                    ElevatedButton.styleFrom(minimumSize: const Size(400, 50)),
                 onPressed: () {
                   Navigator.push(
                       context, MaterialPageRoute(builder: (_) => Login()));
