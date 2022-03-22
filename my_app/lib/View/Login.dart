@@ -13,10 +13,12 @@ class LoginApp extends State<Login> {
     try {
       CollectionReference ref = FirebaseFirestore.instance.collection("User");
       QuerySnapshot usuario = await ref.get();
-      if (usuario.docs.lenght != 0) {
+      if (usuario.docs.length != 0) {
         for (var cursor in usuario.docs) {
           if (user.text == cursor.get('User')) {
             if (pass.text == cursor.get('Pass')) {
+              // ignore: avoid_print
+              print(cursor.get('User'));
               mensaje('Mensaje', 'Dato encontrado');
             }
           }
