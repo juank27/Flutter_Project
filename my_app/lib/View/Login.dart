@@ -16,10 +16,12 @@ class LoginApp extends State<Login> {
       if (usuario.docs.length != 0) {
         for (var cursor in usuario.docs) {
           if (user.text == cursor.get('User')) {
+            print("Hola");
             if (pass.text == cursor.get('Pass')) {
               // ignore: avoid_print
               print(cursor.get('User'));
               mensaje('Mensaje', 'Dato encontrado');
+              pass.clear();
             }
           }
           //print(cursor.get('User'));
@@ -77,7 +79,7 @@ class LoginApp extends State<Login> {
                 style: ElevatedButton.styleFrom(minimumSize: Size(500, 50)),
                 onPressed: () {
                   validarDatos();
-                  pass.clear();
+                  //pass.clear();
                   print('Ingresar');
                 },
                 child: Text('Ingresar'),
