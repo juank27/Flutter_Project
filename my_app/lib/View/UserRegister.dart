@@ -6,15 +6,10 @@ class UserRegister extends StatefulWidget {
 }
 
 class UserRegisterApp extends State<UserRegister> {
+  TextEditingController fecha = TextEditingController();
   var currentSatate;
-  DateTime selectedDate = DateTime.now();
+  //DateTime selectedDate = DateTime.now();
 
-  void callDataPicker() async {
-    // var selectedDate =await getDatePickerWidget();
-    setState(() {
-      currentSatate = selectedDate;
-    });
-  }
 //Future <DateTime?> getDatePickerWidget(){
   //return showDatePicker(
 
@@ -35,7 +30,7 @@ class UserRegisterApp extends State<UserRegister> {
                 child: Container(
                   width: 500,
                   height: 70,
-                  child: Image.asset('image/img.png'),
+                  child: Image.asset('image/avatar2.png'),
                 ),
               ),
             ),
@@ -104,11 +99,12 @@ class UserRegisterApp extends State<UserRegister> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 15, top: 10),
+              padding: EdgeInsets.only(left: 10, top: 10),
               child: Stack(
-                alignment: const Alignment(1.0, 1.0),
+                alignment: const Alignment(1.0, 0),
                 children: [
                   new TextField(
+                    controller: fecha,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10)),
@@ -117,8 +113,12 @@ class UserRegisterApp extends State<UserRegister> {
                     ),
                   ),
                   new FlatButton(
-                      onPressed: () {},
-                      child: new Icon(Icons.date_range_outlined))
+                      onPressed: () {
+                        callDataPcker();
+                      },
+                      child: new Icon(
+                        Icons.date_range_outlined,
+                      ))
                 ],
               ),
             ),
@@ -126,5 +126,31 @@ class UserRegisterApp extends State<UserRegister> {
         ),
       ),
     );
+  }
+
+//utilidad de fecha
+  var _currentSelectedDate;
+  void callDataPcker() async {
+    var selectedDate = await getDatePickerWidget();
+    //print(DateFormat.yMMMd().format(DateTime.now()));
+    //var date = DateFormat.yMMd().format(DateTime.now());
+    setState(() {
+      _currentSelectedDate = selectedDate;
+      fecha.text = _currentSelectedDate.toString();
+    });
+    print("Holaaaa esta es una funcion");
+    print(_currentSelectedDate);
+  }
+
+  Future<DateTime?> getDatePickerWidget() {
+    return showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        //initialDate: DateFormat.yMMd().format(DateTime.now());
+        firstDate: DateTime(2022),
+        lastDate: DateTime(2025),
+        builder: (context, child) {
+          return Theme(data: ThemeData.dark(), child: Center(child: child));
+        });
   }
 }
