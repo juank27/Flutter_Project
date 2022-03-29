@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class UserRegister extends StatefulWidget {
@@ -17,6 +18,28 @@ class UserRegisterApp extends State<UserRegister> {
 //}
   @override
   Widget build(BuildContext context) {
+    TextEditingController nombreUser = TextEditingController();
+    TextEditingController identificacion = TextEditingController();
+    TextEditingController telefono = TextEditingController();
+    TextEditingController correo = TextEditingController();
+    TextEditingController pass = TextEditingController();
+    final firebase = FirebaseFirestore.instance;
+    insertDataUser() async {
+      try {
+        await firebase.collection("User").add({
+          "NombreUsuario": nombreUser.text,
+          "id": identificacion.text,
+          "telefono": telefono.text,
+          "correo": correo.text,
+          "password": pass.text,
+          "fecha": fecha.text,
+          "Estado": true,
+        });
+      } catch (e) {
+        print(e);
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Registro de usuario'),
@@ -37,6 +60,7 @@ class UserRegisterApp extends State<UserRegister> {
             Padding(
               padding: EdgeInsets.all(10),
               child: TextField(
+                controller: nombreUser,
                 autofocus: true,
                 keyboardType: TextInputType.name,
                 //controller: user,
@@ -53,6 +77,7 @@ class UserRegisterApp extends State<UserRegister> {
             Padding(
               padding: EdgeInsets.all(10),
               child: TextField(
+                controller: identificacion,
                 autofocus: true,
                 keyboardType: TextInputType.name,
                 //controller: user,
@@ -69,6 +94,7 @@ class UserRegisterApp extends State<UserRegister> {
             Padding(
               padding: EdgeInsets.all(10),
               child: TextField(
+                controller: telefono,
                 autofocus: true,
                 keyboardType: TextInputType.text,
                 //controller: user,
@@ -77,14 +103,15 @@ class UserRegisterApp extends State<UserRegister> {
                   fillColor: Colors.green,
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10)),
-                  labelText: 'Identificación',
-                  hintText: 'Digite si identifiación',
+                  labelText: 'telefono',
+                  hintText: 'Digite su telefono',
                 ),
               ),
             ),
             Padding(
               padding: EdgeInsets.all(10),
               child: TextField(
+                controller: correo,
                 autofocus: true,
                 keyboardType: TextInputType.emailAddress,
                 //controller: user,
@@ -95,6 +122,23 @@ class UserRegisterApp extends State<UserRegister> {
                       borderRadius: BorderRadius.circular(10)),
                   labelText: 'Correo',
                   hintText: 'Digite su correo',
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: TextField(
+                controller: pass,
+                autofocus: true,
+                keyboardType: TextInputType.emailAddress,
+                //controller: user,
+                style: TextStyle(color: Colors.blueGrey),
+                decoration: InputDecoration(
+                  fillColor: Colors.green,
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  labelText: 'Password',
+                  hintText: 'Digite su contraseña',
                 ),
               ),
             ),
@@ -120,6 +164,25 @@ class UserRegisterApp extends State<UserRegister> {
                         Icons.date_range_outlined,
                       ))
                 ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 0),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(minimumSize: Size(400, 50)),
+                onPressed: () {
+                  print('Registrar Usuario');
+                  //Navigator.push(context,
+                  //    MaterialPageRoute(builder: (_) => UserRegister()));
+                  insertDataUser();
+                  nombreUser.clear();
+                  identificacion.clear();
+                  telefono.clear();
+                  correo.clear();
+                  pass.clear();
+                  fecha.clear();
+                },
+                child: Text('Registrar Usuario'),
               ),
             ),
           ],
