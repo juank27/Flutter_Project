@@ -8,7 +8,7 @@ class UserRegister extends StatefulWidget {
 
 class UserRegisterApp extends State<UserRegister> {
   TextEditingController fecha = TextEditingController();
-  var currentSatate;
+  //var currentSatate;
   //DateTime selectedDate = DateTime.now();
 
 //Future <DateTime?> getDatePickerWidget(){
